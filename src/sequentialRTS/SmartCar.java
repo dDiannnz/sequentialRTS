@@ -1,13 +1,13 @@
 package sequentialRTS;
 
 public class SmartCar {
-	static int cspeed ;
+	 int cspeed ;
 	
-	public static int getSpeed() {
+	public int getSpeed() {
 		return cspeed;
 	}
 
-	public  void setSpeed(int cspeed) {
+	public void setSpeed(int cspeed) {
 		this.cspeed = cspeed;
 	}
 	
@@ -22,7 +22,7 @@ public class SmartCar {
 		Event e = new Event();
 		e.randomEvent();
 		java.util.concurrent.TimeUnit.SECONDS.sleep(2);
-		EventHandler eh = new EventHandler(e.getSpeedLimit(),getSpeed());
+		EventHandler eh = new EventHandler(e.getSpeedLimit());
 		eh.handleEvent();
 		}
 	}
