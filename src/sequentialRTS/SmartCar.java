@@ -1,9 +1,9 @@
 package sequentialRTS;
 
 public class SmartCar {
-	 int cspeed ;
+	 static int cspeed ;
 	
-	public int getSpeed() {
+	public static int getSpeed() {
 		return cspeed;
 	}
 
@@ -18,12 +18,13 @@ public class SmartCar {
 		this.cspeed-=10;
 	}
 	public static void main(String[] args) throws InterruptedException {
+		System.out.println("===Event===			Starting Engine");
 		while(true) {
-		Event e = new Event();
-		e.randomEvent();
-		java.util.concurrent.TimeUnit.SECONDS.sleep(2);
-		EventHandler eh = new EventHandler(e.getSpeedLimit());
-		eh.handleEvent();
+			Event e = new Event();
+			e.randomEvent();
+			java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+			EventHandler eh = new EventHandler(e.getSpeedLimit(),e.isCollision());
+			eh.handleEvent();
 		}
 	}
 }

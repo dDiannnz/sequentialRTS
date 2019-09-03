@@ -38,16 +38,13 @@ public class Event {
 		if(ranSpeed==3) {
 			setSpeedLimit(110);
 		}
-		System.out.println("Speed Limit " +getSpeedLimit() +"kmH");
 		
 		int collisionRNG = r.nextInt(2);
 		if (collisionRNG==0) {
 			setCollision(true);
-			System.out.println(isCollision());
 		}
 		if (collisionRNG==1) {
 			setCollision(false);
-			System.out.println(isCollision());
 		}
 		
 	}
