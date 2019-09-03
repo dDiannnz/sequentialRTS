@@ -11,7 +11,7 @@ public class EventHandler {
 	public void handleEvent() throws InterruptedException {
 		SmartCar sc = new SmartCar();
 		Event e = new Event();
-		System.out.println("===Event===			Checking Surrounding...");
+		System.out.println("===Event===			Checking Surrounding");
 		if (CheckCollision==false) {
 			System.out.println("===Event===			No Object Detected");
 			if(sc.getSpeed()==speedLimit) {
@@ -38,13 +38,16 @@ public class EventHandler {
 		if(CheckCollision==true) {
 			System.out.println("===Warning===			Object Detected");
 			if(sc.getSpeed()!=0) {
-				System.out.println("===Action===			Applying Emergency Breaking");
+				System.out.println("===Action===			Applying Break");
 				java.util.concurrent.TimeUnit.SECONDS.sleep(1);
-				sc.setSpeed(0);
-				System.out.println("===Event===			Car Stopped");
-				System.out.println("===Action===			Waiting for object to move");
+				sc.setSpeed(30);
+				System.out.println("===Action===			Evading Object");
+				java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+				System.out.println("===Event===			Object Evaded");
 			}else {
-				System.out.println("===Action===			Waiting for object to move");
+				System.out.println("===Action===			Evading Object");
+				java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+				System.out.println("===Event===			Object Evaded");
 			}
 		}
 	}
