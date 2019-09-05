@@ -1,5 +1,5 @@
 package sequentialRTS;
-
+import java.util.concurrent.*;
 public class EventHandler {
 	int speedLimit;
 	int speed;
@@ -20,7 +20,7 @@ public class EventHandler {
 			if(sc.getSpeed()<speedLimit) {
 				System.out.println("===Action===			Increasing Speed");
 				while(sc.getSpeed()<speedLimit) {
-					java.util.concurrent.TimeUnit.SECONDS.sleep(1);
+					TimeUnit.SECONDS.sleep(1);
 					sc.incspeed();
 				}
 				System.out.println("===Action===			Target Speed Reached");
@@ -28,7 +28,7 @@ public class EventHandler {
 			}
 			if(sc.getSpeed()>speedLimit){
 				while(sc.getSpeed()>speedLimit) {
-					java.util.concurrent.TimeUnit.SECONDS.sleep(1);
+					TimeUnit.SECONDS.sleep(1);
 					sc.decspeed();
 				}
 				System.out.println("===Action===			Maintaining Speed");
@@ -39,14 +39,14 @@ public class EventHandler {
 			System.out.println("===Warning===			Object Detected");
 			if(sc.getSpeed()!=0) {
 				System.out.println("===Action===			Applying Break");
-				java.util.concurrent.TimeUnit.SECONDS.sleep(1);
+				TimeUnit.SECONDS.sleep(1);
 				sc.setSpeed(30);
 				System.out.println("===Action===			Evading Object");
-				java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+				TimeUnit.SECONDS.sleep(2);
 				System.out.println("===Event===			Object Evaded");
 			}else {
 				System.out.println("===Action===			Evading Object");
-				java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+				TimeUnit.SECONDS.sleep(2);
 				System.out.println("===Event===			Object Evaded");
 			}
 		}
