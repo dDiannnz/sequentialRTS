@@ -1,4 +1,5 @@
 package sequentialRTS;
+import java.sql.Timestamp;
 import java.util.concurrent.*;
 public class EventHandler {
 	int speedLimit;
@@ -13,9 +14,10 @@ public class EventHandler {
 		Event e = new Event();
 		System.out.println("===Event===			Checking Surrounding");
 		if (CheckCollision==false) {
-			System.out.println("===Event===			No Object Detected");
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			System.out.println("===Event===			No Object Detected " + timestamp);
 			if(sc.getSpeed()==speedLimit) {
-				System.out.println("===Action===			Maintaining Speed");
+				System.out.println("===Action===			Maintaining Speed " + timestamp);
 			}
 			if(sc.getSpeed()<speedLimit) {
 				System.out.println("===Action===			Increasing Speed");
@@ -23,7 +25,8 @@ public class EventHandler {
 					TimeUnit.SECONDS.sleep(1);
 					sc.incspeed();
 				}
-				System.out.println("===Action===			Target Speed Reached");
+				Timestamp timestamp1 = new Timestamp(System.currentTimeMillis());
+				System.out.println("===Action===			Target Speed Reached " + timestamp1);
 				System.out.println("===Action===			Maintaining Speed");
 			}
 			if(sc.getSpeed()>speedLimit){
