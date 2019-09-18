@@ -3,14 +3,23 @@ package sequentialRTS;
 import java.util.Random;
 
 public class Event {
-	private  int speedLimit;
-	private boolean Collision;
+	private static int speedLimit;
+	private static boolean Collision;
+	private static  boolean Light;
 	
+	public boolean isLight() {
+		return Light;
+	}
+
+	public void setLight(boolean light) {
+		this.Light = light;
+	}
+
 	public boolean isCollision() {
 		return Collision;
 	}
 
-	public void setCollision(boolean collision) {
+	public static void setCollision(boolean collision) {
 		Collision = collision;
 	}
 
@@ -47,6 +56,13 @@ public class Event {
 			setCollision(false);
 		}
 		
+		int lightRNG = r.nextInt(2);
+		if (collisionRNG==0) {
+			setLight(true);
+		}
+		if (collisionRNG==1) {
+			setLight(false);
+		}
 	}
 
 

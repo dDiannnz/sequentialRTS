@@ -53,5 +53,21 @@ public class EventHandler {
 				System.out.println("===Event===			Object Evaded");
 			}
 		}
+		
+		Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
+		if(e.isLight()==true) {
+			System.out.println("Light Detected at "+timestamp2);
+			
+			System.out.println("Turning off Light");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("Lights Turned Off ");
+		}
+		if(e.isLight()==false) {
+			System.out.println("Light Detected at "+timestamp2);
+			
+			System.out.println("Turning on Light");
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println("Lights Turned On");
+		}
 	}
 }
