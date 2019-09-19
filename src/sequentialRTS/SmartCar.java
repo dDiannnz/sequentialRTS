@@ -22,9 +22,12 @@ public class SmartCar {
 		while(true) {
 			Event e = new Event();
 			e.randomEvent();
-			java.util.concurrent.TimeUnit.SECONDS.sleep(2);
-			EventHandler eh = new EventHandler(e.getSpeedLimit(),e.isCollision());
-			eh.handleEvent();
+			CollisionSeq cs = new CollisionSeq();
+			cs.handleEvent();
+			SpeedSeq ss = new SpeedSeq();
+			ss.handleSpeed();
+			LightSeq ls = new LightSeq();
+			ls.handleLight();
 		}
 	}
 }
