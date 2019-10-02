@@ -30,7 +30,9 @@ public class LightSeq {
 					e1.printStackTrace();
 				}
 				setLamp(false);
-				System.out.println("===Action===			Lights Turned Off ");
+				Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
+				System.out.println("===Action===			Lights Turned Off " + timestamp2);
+				//System.out.println(timestamp-timestamp2);
 			}
 		}
 		if(e.isLight()==false) {
