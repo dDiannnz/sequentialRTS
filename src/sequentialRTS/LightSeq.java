@@ -1,10 +1,11 @@
 package sequentialRTS;
 
 import java.sql.Timestamp;
+import java.util.concurrent.TimeUnit;
 
 public class LightSeq {
 	private static boolean Lamp;
-
+	
 	public static boolean isLamp() {
 		return Lamp;
 	}
@@ -16,38 +17,36 @@ public class LightSeq {
 	}
 
 
-	public void handleLight() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+	public void handleLight() throws InterruptedException {
+
+		Timestamp lightTime = new Timestamp(System.currentTimeMillis());
 		Event e = new Event();
+		long detectTime = lightTime.getTime()-e.getEventGenerate();
 		if(e.isLight()==true) {
 			if(isLamp()==true) {
-				System.out.println("===Event===						Light Detected at "+timestamp);
+				System.out.println("===Event===						Light Detected at "+lightTime);
 				
 				System.out.println("===Action===			Turning off Light");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
+				TimeUnit.SECONDS.sleep(1);
 				setLamp(false);
-				Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
-				System.out.println("===Action===			Lights Turned Off " + timestamp2);
-				//System.out.println(timestamp-timestamp2);
+				Timestamp onTime = new Timestamp(System.currentTimeMillis());
+				System.out.println("===Action===			Lights Turned Off " + onTime);
+				long executionTime = onTime.getTime()-lightTime.getTime();
+				System.out.println("Detection Time : "+detectTime+" || Execution Time : "+executionTime+" milliseconds");
 			}
 		}
 		if(e.isLight()==false) {
 			if(isLamp()==false) {
-				System.out.println("===Action===					Light not detected at "+timestamp);
+				System.out.println("===Action===					Light not detected at "+lightTime);
 				
 				System.out.println("===Action===			Turning on Lamps");
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-
-					e1.printStackTrace();
-				}
+				TimeUnit.SECONDS.sleep(1);
 				setLamp(true);
-				System.out.println("===Action===			Lamps Turned On");
+				Timestamp offTime = new Timestamp(System.currentTimeMillis());
+				System.out.println("===Action===			Lamps Turned On "+ offTime);
+				
+				long executionTime = offTime.getTime()-lightTime.getTime();
+				System.out.println("Detection Time : "+detectTime+ " || Execution Time : "+executionTime+" milliseconds");
 			}
 		}
 	}
